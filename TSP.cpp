@@ -9,8 +9,8 @@ using namespace std;
 
 // unsigned seed = std::chrono::system_clock::now().time_since_epoch().count(); 
 
-int calcDist(const vector<int> &route, const vector<vector<int>> &mtrDist) {
-    int total = mtrDist[0][route[0]] + mtrDist[route[route.size() - 1]][0];
+double calcDist(const vector<int> &route, const vector<vector<double>> &mtrDist) {
+    double total = mtrDist[0][route[0]] + mtrDist[route[route.size() - 1]][0];
 
     /*
     * temos que somar a distancia da cidade do caixeiro
@@ -25,7 +25,8 @@ int calcDist(const vector<int> &route, const vector<vector<int>> &mtrDist) {
 }
 
 int main(int argc, char **argv) {
-    int n, aux, minDist;
+    int n, aux;
+    double minDist;
     bool isFirstMin = false;
     srand(time(NULL));
     
@@ -33,7 +34,7 @@ int main(int argc, char **argv) {
     if(argc > 1) n = atoi(argv[1]); //se tivermos parametros entra no modo de teste de tempo e aloca a matriz automaticamente
     else cin >> n;
 
-    vector<vector<int>> mtrDist(n);
+    vector<vector<double>> mtrDist(n);
     vector<pair<int,int>> coords(n);
     vector<int> pointsIDs, bestRoute;
 
@@ -45,7 +46,7 @@ int main(int argc, char **argv) {
         for (int j = 0; j < n; j++) {
             //seta as posiçoes da matriz aleatoriamente
             int dx = coords[i].first - coords[j].first;
-            int dy = coords[i].second - coords[i].second;
+            int dy = coords[i].second - coords[j].second;
             mtrDist[i].push_back(sqrt((dx*dx) + (dy*dy)));
         }
     }
@@ -55,7 +56,7 @@ int main(int argc, char **argv) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     double tempo;
     do {
-        int auxDist = calcDist(pointsIDs, mtrDist);
+        double auxDist = calcDist(pointsIDs, mtrDist);
         //assume como melhor rota a primeira(so executa na primeira iteração :)
         if (!isFirstMin) {
             minDist = auxDist;
