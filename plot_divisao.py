@@ -65,7 +65,7 @@ fig, ax = plt.subplots()
 # nx.draw_networkx_labels(G,pos=pos)
 # nx.draw_networkx_edges(G, pos, edge_color='black')
 # nx.draw_networkx_nodes(G,pos = pos,node_color = node_colors, ax=ax,node_size=100)
-nx.draw_spring(G, node_color = node_colors, with_labels = True, node_size = 10,arrows = True)
+nx.draw_spring(G, node_color = node_colors, with_labels = True, node_size = 10,arrows = False)
 
 #coloca os eixos no plt
 ax.tick_params(left=True, bottom=True, labelleft=True,labelbottom=True)
