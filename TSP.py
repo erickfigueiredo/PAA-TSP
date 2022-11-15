@@ -85,4 +85,6 @@ if __name__ == '__main__':
     path, dist = DivConqPCV(p, 0, len(p)-1)
     end = perf_counter_ns()
 
-    print(f'Tempo de Execucao: {round((end-begin)/1e6, 2)} ms\n\nDistancia: {round(dist, 2)}\n\nArestas: {path}')
+    print(f'Tempo de Execucao: {round((end-begin)/1e6, 2)} ms\n\nDistancia: {round(dist, 2)}\n\nArestas:')
+    for p in path:
+        print(f'{p[0][0]},{p[0][1]}->{p[1][0]},{p[1][1]}')
